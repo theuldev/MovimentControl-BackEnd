@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MovimentControl.Api</name>
+    </assembly>
+    <members>
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Get">
+            <summary>
+            Retorna todos os clientes cadastrados no sistema
+            </summary>
+            <returns>Todos os objetos criado pelo usuário</returns>
+            <response code="200">Retorno das informações foi bem-sucedida</response>
+            <response code="404">Cliente não encontrado</response>
+        </member>
+        <member name="M:MovimentControl.Api.Controllers.ClientController.GetById(System.Int32)">
+            <summary>
+            Retorna o cliente de acordo com o Id que foi passado na url
+            </summary>
+            <param name="id">Id do cliente</param>
+            <returns>Retorna o objeto</returns>
+            <response code="200">Cliente retornado com sucesso </response>
+            <response code="404">Cliente não encontrado </response>
+        </member>
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Post(MovimentControl.Api.Models.ClientInputModel)">
+            <summary>
+            Cadastro de um cliente.
+            </summary>
+            <remarks>
+            {
+                "fullName": "Gustavo Silveira",
+                "city": "Cajamar",
+                "cep": "07776435",
+                "district": "Jordanesia",
+                "state": "SP",
+                "address": "Avenida Deovair Cruz de Oliveira",
+                "cpf": "12481886089",
+                "rg": "4203171193",
+                "gender": 1,
+                "phone": "71923139139",
+                "career": "Segurança",
+                "email": "gift4444@outlook.com",
+                "service": 1,
+                "details": "Dores nas Costas e nas Pernas,Mal postura",
+                "healthI": 4,
+                "mCivil": 2
+            }
+            </remarks>
+            <param name="model">Dados do cliente</param>
+            <returns>Retorna os dados do cliente recém-criado</returns>
+            <response code="201">Objeto criado com sucesso</response>
+            <response code="400">Objeto inválido</response>
+        </member>
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Put(System.Int32,MovimentControl.Api.Models.ClientInputModel)">
+            <summary>
+            Modificação de informações de um cliente
+            </summary>
+            <param name="id">Id do cliente</param>
+            <param name="model">Dados do cliente</param>
+            <returns>Retorna os dados do cliente modificado</returns>
+            <response code="204">Cliente modificado com sucesso</response>
+            <response code="400">Cliente inválido</response>
+            <response code="404">Cliente não encontrado</response>
+        </member>
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Delete(System.Int32)">
+            <summary>
+            Exclusão de um cliente
+            </summary>
+            <param name="id">Id do cliente</param>
+            <returns>Cliente excluído com sucesso</returns>
+            <response code="200">Cliente excluído com sucesso</response>
+            <response code="404">Cliente não encontrado</response>
+        </member>
+    </members>
+</doc>
