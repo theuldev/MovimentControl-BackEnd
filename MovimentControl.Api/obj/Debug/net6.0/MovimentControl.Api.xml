@@ -4,6 +4,26 @@
         <name>MovimentControl.Api</name>
     </assembly>
     <members>
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Login(System.String,System.String)">
+            <summary>
+            Realiza o login do usuário no sistema
+            </summary>
+            <param name="username">Usuário do sistema</param>
+            <param name="password">Senha do usuário</param>
+            <returns>Retorna o token JWT que será usado na navegação entre as páginas e o id que será usado na autenticação de dois fatores</returns>
+            <response code="200"> Login do usuário do sistema foi bem concluido</response>
+        </member>
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Login2Fa(MovimentControl.Api.Entities.User,System.Int32)">
+            <summary>
+            Realiza a autenticação de dois fatores do usuário no sistema
+            </summary>
+            <param name="user">Informações do usuário</param>
+            <param name="id">Id do usuário</param>
+            <returns>Retorna o token que é usado na autenticação de dois fatores</returns>
+            <response code="200">A autenticação do usuário foi bem sucedida</response>
+            <response code="401">O usuário passado é invalido</response>
+            <response code="403">O token passado é invalido</response>
+        </member>
         <member name="M:MovimentControl.Api.Controllers.ClientController.Get">
             <summary>
             Retorna todos os clientes cadastrados no sistema
