@@ -201,7 +201,6 @@ C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\Movi
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.AssemblyInfoInputs.cache
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.AssemblyInfo.cs
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.csproj.CoreCompileInputs.cache
-C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\appsettings.json
@@ -276,3 +275,13 @@ C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\Movi
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.pdb
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.genruntimeconfig.cache
 C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\ref\MovimentControl.Api.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\MovimentControl.Application.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\MovimentControl.Domain.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\MovimentControl.Infra.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\MovimentControl.Application.pdb
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\MovimentControl.Domain.pdb
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\MovimentControl.Infra.pdb
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Api\obj\Debug\net6.0\MovimentControl.Api.MvcApplicationPartsAssemblyInfo.cs

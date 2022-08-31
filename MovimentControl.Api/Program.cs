@@ -1,39 +1,44 @@
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using MovimentControl.Api.Repository;
-using MovimentControl.Api.Persistence;
-using MovimentControl.Api.Validations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using MovimentControl.Api.Services;
-using SendGrid;
 using SendGrid.Extensions.DependencyInjection;
-using MovimentControl.Api.Persistence.Repository;
-using MovimentControl.Api.Interfaces;
+using MovimentControl.Domain.Interfaces.Services;
+using MovimentControl.Domain.Interfaces.Repository;
+using MovimentControl.Domain.Services;
+using MovimentControl.Infra.Repository;
+using MovimentControl.Domain.Validations;
+using MovimentControl.Application.Mapper;
+using MovimentControl.Infra;
+using FluentValidation;
+using MovimentControl.Domain.Models.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 
-builder.Services.AddControllers()
-    .AddFluentValidation(option => option.RegisterValidatorsFromAssemblyContaining<ClientValidator>());
-builder.Services.
-    AddScoped<IClientService, ClientService>();
+builder.Services.AddControllers();
+builder.Services
+    .AddScoped<IClientService, ClientService>();
 builder.Services
     .AddScoped<IUserService, UserService>();
 
+builder.Services
+    .AddValidatorsFromAssemblyContaining<ClientValidations>().AddFluentValidationAutoValidation();
+
+builder
+    .Services.AddDbContext<Context>();
+
+builder.Services
+    .AddAutoMapper(typeof(ClientProfile));
 builder.Services
     .AddScoped<IClientRepository, ClientRepository>();
 builder.Services
     .AddScoped<IUserRepository, UserRepository>();
 
-var _clientConn = builder.Configuration.GetConnectionString("ClientCs");
-builder.Services
-.AddDbContext<MovimentControlContext>(
-    options => options.UseSqlServer(_clientConn));
 
 var SendGridKey = builder.Configuration.GetSection("SendGridApiKey").Value;
 

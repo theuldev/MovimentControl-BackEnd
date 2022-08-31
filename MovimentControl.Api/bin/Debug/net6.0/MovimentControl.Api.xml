@@ -12,8 +12,9 @@
             <param name="password">Senha do usuário</param>
             <returns>Retorna o token JWT que será usado na navegação entre as páginas e o id que será usado na autenticação de dois fatores</returns>
             <response code="200"> Login do usuário do sistema foi bem concluido</response>
+            <response code="400"> Usuário ou Senha Invalída</response>
         </member>
-        <member name="M:MovimentControl.Api.Controllers.ClientController.Login2Fa(MovimentControl.Api.Entities.User,System.Int32)">
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Login2Fa(MovimentControl.Domain.Models.UserInputModel,System.Int32)">
             <summary>
             Realiza a autenticação de dois fatores do usuário no sistema
             </summary>
@@ -21,6 +22,7 @@
             <param name="id">Id do usuário</param>
             <returns>Retorna o token que é usado na autenticação de dois fatores</returns>
             <response code="200">A autenticação do usuário foi bem sucedida</response>
+            <response code="400">O id passado não é válido</response>
             <response code="401">O usuário passado é invalido</response>
             <response code="403">O token passado é invalido</response>
         </member>
@@ -41,7 +43,7 @@
             <response code="200">Cliente retornado com sucesso </response>
             <response code="404">Cliente não encontrado </response>
         </member>
-        <member name="M:MovimentControl.Api.Controllers.ClientController.Post(MovimentControl.Api.Models.ClientInputModel)">
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Post(MovimentControl.Domain.Models.Client.ClientInputModel)">
             <summary>
             Cadastro de um cliente.
             </summary>
@@ -70,7 +72,7 @@
             <response code="201">Objeto criado com sucesso</response>
             <response code="400">Objeto inválido</response>
         </member>
-        <member name="M:MovimentControl.Api.Controllers.ClientController.Put(System.Int32,MovimentControl.Api.Models.ClientInputModel)">
+        <member name="M:MovimentControl.Api.Controllers.ClientController.Put(System.Int32,MovimentControl.Domain.Models.Client.ClientInputModel)">
             <summary>
             Modificação de informações de um cliente
             </summary>

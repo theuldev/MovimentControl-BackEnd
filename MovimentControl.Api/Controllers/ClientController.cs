@@ -1,15 +1,12 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using MovimentControl.Api.Repository;
-using MovimentControl.Api.Models;
-using MovimentControl.Api.Validations;
-using MovimentControl.Api.Entities;
-using MovimentControl.Api.Services;
 using Microsoft.AspNetCore.Authorization;
-using SendGrid.Helpers.Mail;
-using MovimentControl.Api.Persistence.Repository;
-using SendGrid;
-using MovimentControl.Api.Interfaces;
+using MovimentControl.Domain.Interfaces.Services;
+using MovimentControl.Domain.Validations;
+using MovimentControl.Domain.Services;
+using MovimentControl.Domain.Models;
+using MovimentControl.Domain.Models.Client;
+using AutoMapper;
 
 namespace MovimentControl.Api.Controllers
 {
@@ -20,14 +17,14 @@ namespace MovimentControl.Api.Controllers
     public class ClientController : ControllerBase
     {
         private readonly IClientService clientService;
-        private readonly ClientValidator validator;
+        private readonly ClientValidations ClientValidator;
         private readonly IUserService userService;
-
+        private readonly IMapper mapper;
         private IConfiguration configuration;
-        public ClientController(ClientValidator validator, IConfiguration configuration, IUserService userService, IClientService clientService)
+        public ClientController(IMapper mapper,  ClientValidations ClientValidator, IConfiguration configuration, IUserService userService, IClientService clientService)
         {
-
-            this.validator = validator;
+            this.mapper = mapper;
+            this.ClientValidator = ClientValidator;
             this.configuration = configuration;
             this.userService = userService;
             this.clientService = clientService;
@@ -39,21 +36,30 @@ namespace MovimentControl.Api.Controllers
         /// <param name="password">Senha do usuário</param>
         /// <returns>Retorna o token JWT que será usado na navegação entre as páginas e o id que será usado na autenticação de dois fatores</returns>
         /// <response code="200"> Login do usuário do sistema foi bem concluido</response>
+        /// <response code="400"> Usuário ou Senha Invalída</response>
 
         [HttpPost("login")]
         [AllowAnonymous]
         public IActionResult Login(string username, string password)
         {
+            try
+            {
+                var model = userService.GetUser(username, password);
+                var tokenString = TokenService.GenerateToken(username, configuration);
 
+             
+                var token2Fa = RandomTokenService.GenerateToken2Fa();
+                model.Token = token2Fa;
+                userService.Update(model);
+                userService.SendEmail(token2Fa, model);
+                return Ok(new { token = tokenString, id = model.Id });
 
-            var tokenString = TokenService.GenerateToken(username, configuration);
-
-            var model = userService.GetUser(username, password);
-            var token2Fa = RandomTokenService.GenerateToken2Fa();
-            model.Token = token2Fa;
-            userService.Update(model);
-            userService.SendEmail(token2Fa, model);
-            return Ok(new { token = tokenString, id = model.Id });
+            }
+            catch(Exception ex) 
+            {
+            
+            return BadRequest("Usuario não foi válido " +  ex.Message);
+            }
         }
         /// <summary>
         /// Realiza a autenticação de dois fatores do usuário no sistema
@@ -62,22 +68,32 @@ namespace MovimentControl.Api.Controllers
         /// <param name="id">Id do usuário</param>
         /// <returns>Retorna o token que é usado na autenticação de dois fatores</returns>
         /// <response code="200">A autenticação do usuário foi bem sucedida</response>
+        /// <response code="400">O id passado não é válido</response>
         /// <response code="401">O usuário passado é invalido</response>
         /// <response code="403">O token passado é invalido</response>
         [HttpPost("login2fa/{id}")]
-        public IActionResult Login2Fa(User user,int id)
+        public IActionResult Login2Fa(UserInputModel user,int id)
         {
-            var model = userService.GetById(id);
-            if (RandomTokenService.VerifyDate(model, user.LoggedTime.ToLocalTime()))
+            try 
             {
-                var token = user.Token;
-                if (RandomTokenService.VerifyToken(token, model))
+                var model = userService.GetById(id);
+                if (RandomTokenService.VerifyDate(model, user.LoggedTime.ToLocalTime()))
                 {
-                    return Ok(new { token = token });
+                    var token = user.Token;
+                    if (RandomTokenService.VerifyToken(token, model))
+                    {
+                        return Ok(new { token = token });
+                    }
+                    return Forbid();
                 }
-                return Forbid();
+                return Unauthorized();
             }
-            return Unauthorized();
+            catch(Exception ex) 
+            {
+            
+            return BadRequest("Id não encontrado" + ex.Message);
+            }
+           
         }
 
 
@@ -93,7 +109,8 @@ namespace MovimentControl.Api.Controllers
         {
             try
             {
-                var model = clientService.GetAll();
+                var client = clientService.GetAll();
+                var model = mapper.Map<ClientViewModel>(client);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -110,12 +127,13 @@ namespace MovimentControl.Api.Controllers
         /// <returns>Retorna o objeto</returns>
         /// <response code="200">Cliente retornado com sucesso </response>
         /// <response code="404">Cliente não encontrado </response>
-        [HttpGet("{id}")]
+        [HttpGet("/{id}")]
         public IActionResult GetById(int id)
         {
             var client = clientService.GetById(id);
             if (client == null) return NotFound();
-            return Ok(client);
+            var model = mapper.Map<ClientViewModel>(client);
+            return Ok(model);
         }
 
         /// <summary>
@@ -148,14 +166,14 @@ namespace MovimentControl.Api.Controllers
         [HttpPost]
         public IActionResult Post(ClientInputModel model)
         {
-            ValidationResult validationResult = validator.Validate(model);
-            if (!validationResult.IsValid) return BadRequest();
+            var client = mapper.Map<Client>(model);
+            ValidationResult validationResult = ClientValidator.Validate(model);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
 
-            clientService.Add(model);
-
+            clientService.Add(client);
             return CreatedAtAction("GetById",
-            new { id = model.Id },
-                model);
+            new { id = client.Id },
+                client);
         }
 
         /// <summary>
@@ -170,14 +188,15 @@ namespace MovimentControl.Api.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, ClientInputModel model)
         {
+            var clientMap = mapper.Map<Client>(model);
 
             var client = clientService.GetById(id);
             if (client == null) return NotFound();
 
-            ValidationResult validationResult = validator.Validate(model);
-            if (!validationResult.IsValid) return BadRequest();
+            ValidationResult validationResult = ClientValidator.Validate(model);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
 
-            clientService.Update(model);
+            clientService.Update(clientMap);
             return NoContent();
 
 

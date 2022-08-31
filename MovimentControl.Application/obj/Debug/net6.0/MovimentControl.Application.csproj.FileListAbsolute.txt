@@ -1,0 +1,17 @@
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\bin\Debug\net6.0\MovimentControl.Application.deps.json
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\bin\Debug\net6.0\MovimentControl.Application.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\bin\Debug\net6.0\MovimentControl.Application.pdb
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.csproj.AssemblyReference.cache
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.AssemblyInfoInputs.cache
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.AssemblyInfo.cs
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.csproj.CoreCompileInputs.cache
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\refint\MovimentControl.Application.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.pdb
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\ref\MovimentControl.Application.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\bin\Debug\net6.0\MovimentControl.Domain.dll
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\bin\Debug\net6.0\MovimentControl.Domain.pdb
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.csproj.CopyComplete
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\bin\Debug\net6.0\MovimentControl.Application.runtimeconfig.json
+C:\Users\mathe\source\repos\sltheus\MovimentControl\MovimentControl-BackEnd\MovimentControl.Application\obj\Debug\net6.0\MovimentControl.Application.genruntimeconfig.cache
